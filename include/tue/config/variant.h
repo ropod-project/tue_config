@@ -122,7 +122,7 @@ public:
 
     bool getValue(int& v) { return checkAndGet(i_, 'i', v); }
     bool getValue(double& v) { return checkAndGet(d_, 'd', v) || checkAndGet((double)i_, 'i', v); }
-    bool getValue(float& v) { return checkAndGet((float)d_, 'd', v) || checkAndGet((float)i_, 'i', v); }
+    bool getValue(float& v) {  return checkAndGet((float)d_, 'd', v) || checkAndGet((float)i_, 'i', v); }
     bool getValue(std::string& v) { return checkAndGet(s_, 's', v); }
 
     bool getValue(bool& v)
@@ -155,11 +155,13 @@ private:
     inline bool checkAndGet(const T& v, char type, T& out)
     {
         if (type != type_)
+        {
             return false;
+        }
         out = v;
         return true;
     }
-
+    
     friend std::ostream& operator<< (std::ostream& out, const Variant& v)
     {
         switch (v.type_)

@@ -61,17 +61,19 @@ public:
                 addError("Expected property '" + name + "', not found.");
             return false;
         }
-
+        
         if (!v.getValue(value))
         {
             if (opt == tue::REQUIRED)
-                addError("Property '" + name + "' has invalid type.");
+            {                    
+    //            addError("Property '" + name + "' has invalid type." ); // Removed, because allows to check for the type
+            }
             return false;
         }
 
         return true;
     }
-
+    
     void print() const;
 
     ReaderWriter limitScope() const;
